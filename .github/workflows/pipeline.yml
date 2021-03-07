@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       SKIP_PREFLIGHT_CHECK: true
-      MONGO_URI: ${{ secrets.MONGO_URI }}
-      TEST_MONGO_URI: ${{secrets.TEST_MONGO_URI}}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      TEST_MONGODB_URI: ${{secrets.TEST_MONGODB_URI}}
       PORT: ${{secrets.PORT}}
       SECRET: ${{secrets.SECRET}}
+      SECRET_KEY: ${{secrets.SECRET_KEY}}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -30,9 +31,6 @@ jobs:
         run: npm run build:client
       - name: test
         run: npm run test:all
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          SECRET: ${{secrets.SECRET}}
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
