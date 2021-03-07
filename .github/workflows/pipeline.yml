@@ -44,7 +44,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "amara-part11-bloglist"
           heroku_email: "amara.dianney@gmail.com"
-          procfile: "web: npm start"
+#          procfile: "web: npm start"
           healthcheck: "https://amara-part11-bloglist.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
