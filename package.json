@@ -1,0 +1,47 @@
+{
+  "name": "bloglist-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node index.js",
+    "start:prod": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "lint": "eslint .",
+    "build:client": "cd client && npm run build",
+    "build": "cd client && npm install && npm run build",
+    "lint:client": "cd client && npm run eslint",
+    "lint:all": "npm run lint && npm run lint:client",
+    "test:client": "cd client && CI=true npm test",
+    "test:all": "npm test && npm run test:client",
+    "test:e2e": "cd client && npm run test:e2e"
+  },
+  "author": "Amara Bamba",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.11.13",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^6.6.0",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["<rootDir>/client/", "<rootDir>/node_modules/"]
+  }
+}
