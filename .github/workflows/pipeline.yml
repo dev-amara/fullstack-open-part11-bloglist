@@ -30,6 +30,9 @@ jobs:
         run: npm run build:client
       - name: test
         run: npm run test:all
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SECRET: ${{secrets.SECRET}}
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
@@ -48,9 +51,8 @@ jobs:
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
         env:
-          HD_MONGO_URI: ${{ secrets.MONGO_URI }}
-          HD_SECRET: ${{secrets.SECRET}}
-          HD_SKIP_PREFLIGHT_CHECK: true
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SECRET: ${{secrets.SECRET}}
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push'  && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
